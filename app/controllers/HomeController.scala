@@ -1,7 +1,11 @@
 package controllers
 
 import javax.inject._
+
+import models.Hotel
+import org.mongodb.scala.{Document, MongoClient, MongoCollection, MongoDatabase, Observer}
 import play.api._
+import play.api.libs.json.Json
 import play.api.mvc._
 
 /**
@@ -9,8 +13,18 @@ import play.api.mvc._
  * application's home page.
  */
 @Singleton
-class HomeController @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
+class HomeController @Inject()(cc: ControllerComponents) extends AbstractController(cc)
+{
 
+  def test = Action{
+    Hotel.findAll
+    Ok("Revise la consola papo")
+  }
+  def insert = Action{
+    val hotel: Hotel = Hotel(5, "InsertTest3")
+    Hotel.insert(hotel)
+    Ok("Ingresado")
+  }
   /**
    * Create an Action to render an HTML page.
    *

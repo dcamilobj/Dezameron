@@ -1,0 +1,3 @@
+use dezamerondb;
+db.createCollection('hotel');
+db.hotel.insert({hotel_id:1, hotel_name:"Dezameron"});
