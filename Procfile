@@ -1,2 +1,2 @@
-web: play run --http.port=$PORT $PLAY_OPTS
+web: target/universal/stage/bin/dezameron-dae -Dhttp.port=${PORT}
 
