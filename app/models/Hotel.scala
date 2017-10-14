@@ -17,8 +17,8 @@ object Hotel {
     Hotel(new ObjectId(),hotel_id,hotel_name)
 
   //Para poder convertir la colección en BSON y viceversa
-  val codecRegistry = fromRegistries(fromProviders(classOf[Hotel]), DEFAULT_CODEC_REGISTRY )
-
+  //val codecRegistry = fromRegistries(fromProviders(classOf[Hotel]), DEFAULT_CODEC_REGISTRY )
+  val codecRegistry = fromRegistries(fromProviders(classOf[Hotel]))
   val mongoClient: MongoClient = MongoClient()
   val database: MongoDatabase = mongoClient.getDatabase("dezamerondb").withCodecRegistry(codecRegistry)
   val collection: MongoCollection[Hotel] = database.getCollection("hotel")

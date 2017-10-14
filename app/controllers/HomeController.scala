@@ -4,12 +4,13 @@ import javax.inject._
 
 import models.Hotel
 import models.Hotel.collection
+import models.Room.rooms
 import org.mongodb.scala.{Document, MongoClient, MongoCollection, MongoDatabase, Observer}
 import play.api._
 import play.api.libs.json.Json
 import play.api.mvc._
 import models.Helpers._
-
+import org.mongodb.scala.model.Filters._
 /**
  * This controller creates an `Action` to handle HTTP requests to the
  * application's home page.
@@ -26,7 +27,8 @@ class HomeController @Inject()(cc: ControllerComponents) extends AbstractControl
   def search(arrive_date: String, leave_date: String, city:String,
              hosts: Int, room_type:String)  =
     Action{
-    Ok("No tengo json para devolver lindo")
+    Ok(Json.toJson(rooms.find(and(equal("city", city), equal("capacity",hosts),
+      equal("room_type",room_type))).results()))
   }
 
   def insert = Action{
