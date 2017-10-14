@@ -7,8 +7,9 @@ import org.mongodb.scala.bson.codecs.DEFAULT_CODEC_REGISTRY
 import org.bson.codecs.configuration.CodecRegistries.{fromProviders, fromRegistries}
 import org.mongodb.scala.{Completed, Document, MongoClient, MongoCollection, MongoDatabase, Observer}
 import play.api.libs.json._
+import models.Helpers._
 
-case class Hotel(_id: ObjectId, hotel_id: Double, hotel_name: String)
+case class  Hotel(_id: ObjectId, hotel_id: Double, hotel_name: String)
 
 object Hotel {
 
@@ -32,17 +33,6 @@ object Hotel {
   //implicit val hotelRead = Json.reads[Hotel]
 
 
-
-  def findAll = collection.find().subscribe(new Observer[Hotel] {
-
-    override def onError(e: Throwable): Unit = println(s"onError: $e")
-
-    override def onComplete(): Unit = println("onComplete")
-
-    override def onNext(result: Hotel): Unit =
-      println(Json.toJson(result))
-  })
-
  def insert(hotel:Hotel) = collection.insertOne(hotel).subscribe(new Observer[Completed] {
 
    override def onError(e: Throwable): Unit =  println(s"onError: $e")
@@ -51,6 +41,8 @@ object Hotel {
 
    override def onNext(result: Completed): Unit = println("onNext")
  })
+  
+
 }
 
 
