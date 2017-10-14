@@ -1,2 +1,2 @@
-web: target/universal/stage/bin/dezameron-dae -Dhttp.port=${PORT}
+web: target/universal/stage/bin/dezameron-dae -Dhttp.port=${PORT} -DapplyEvolutions.default=true
 
