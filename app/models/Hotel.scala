@@ -32,17 +32,6 @@ object Hotel {
   implicit val hotelWrite = Json.writes[Hotel]
   //implicit val hotelRead = Json.reads[Hotel]
 
-
- def insert(hotel:Hotel) = collection.insertOne(hotel).subscribe(new Observer[Completed] {
-
-   override def onError(e: Throwable): Unit =  println(s"onError: $e")
-
-   override def onComplete(): Unit =  println("onComplete")
-
-   override def onNext(result: Completed): Unit = println("onNext")
- })
-  
-
 }
 
 

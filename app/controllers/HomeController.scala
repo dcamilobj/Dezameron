@@ -24,9 +24,9 @@ class HomeController @Inject()(cc: ControllerComponents) extends AbstractControl
 
 
   def insert = Action{
-    val hotel: Hotel = Hotel(5, "InsertTest3")
-    Hotel.insert(hotel)
-    Ok("Ingresado")
+    val hotel: Hotel = Hotel(8, "InsertTest4")
+    collection.insertOne(hotel).results()
+    Ok("Ingresado papo")
   }
   /**
    * Create an Action to render an HTML page.
